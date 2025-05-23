@@ -1,0 +1,41 @@
+﻿@page "{currentPage:int?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Pokédex";
+}
+
+<div class="text-center">
+        <img src="~/Pokédex_logo.png" class="pb-5">
+    
+   <div class="row">
+        @foreach (var pokemon in Model.PokemonList.Results)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/@(pokemon.Id).png" class="card-img-top" alt="@pokemon.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@pokemon.Name.ToUpperInvariant()</h5>
+                        <a asp-page="Pokemon" asp-route-id="@pokemon.Id" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <nav>
+        <ul class="pagination justify-content-center">
+            @if (Model.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-page="./Index" asp-route-currentPage="@(Model.CurrentPage - 1)">Previous</a>
+                </li>
+            }
+            <li class="page-item active">
+                <span class="page-link">@Model.CurrentPage</span>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-page="./Index" asp-route-currentPage="@(Model.CurrentPage + 1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
