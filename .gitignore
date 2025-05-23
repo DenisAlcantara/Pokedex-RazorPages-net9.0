@@ -1,0 +1,16 @@
+## Arquivos de build
+bin/
+obj/
+
+## Arquivos do Visual Studio
+.vs/
+*.user
+*.suo
+*.userprefs
+
+## Arquivos de configuração local
+appsettings.Development.json
+
+## Dependências
+packages/
+node_modules/
